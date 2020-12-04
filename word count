@@ -1,0 +1,23 @@
+fname=input('enter file name')
+try:
+    fhand=open(fname)
+print('File cannot be opened:',fname)
+    exit()
+counts=dict()
+for line in fhand:
+    words=line.split()
+    if len(words)<2:
+        continue
+    if words[0]=='From':
+        add=words[1]
+        if add not in counts:
+            counts[add]=1
+        else:
+            counts[add]+=1
+maxcount=None
+maxmail=None
+for add,count in counts:
+    if maxcount is None or count>maxcount:
+        maxmail=add
+        maxcount=count
+print(maxmail,maxcount)    
